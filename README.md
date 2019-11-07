@@ -1,5 +1,5 @@
 # antiPixel
-🏃 Convert BMPs and text files to proper x8086 assembly arrays
+👾 Convert BMPs and text files to proper x8086 assembly arrays
 Author: Saad Bazaz
 
 Basic image reading and manipulation in C++, in Visual Studio 2019. Converts 24-bit BMP and properly 
