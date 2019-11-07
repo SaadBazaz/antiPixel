@@ -1,7 +1,6 @@
 // BMPtoASMconvertor.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Created by grayhat
 
-#include <iostream>
 #include "reader.h"
 #include "ConfigHandler.h"
 #include "BMPtoASMconvertor.h"
@@ -9,7 +8,23 @@
 using namespace std;
 int main()
 {
-    std::cout << "Hello World!\n";
+    //std::cout << "Hello World!\n";
+
+cout << "					   $$\\     $$\\   $$$$$$\\   $$\\                        $$\\"<<endl;
+cout << "					   $$ |    \\__|  $$ __$$\\  \\__|                       $$ |" << endl;
+cout << "			$$$$$$\\  $$$$$$$\\ $$$$$$\\   $$\\  $$ | $$ |  $$\\  $$\\   $$\\  $$$$$$\\   $$ |" << endl;
+cout << "			\\____$$\\ $$  __$$\\\\_$$ _|   $$ | $$$$$$$ |  $$ |  \\$$\\ $$ | $$ __$$\\  $$ |" << endl;
+cout << "			$$$$$$$ | $$ | $$ | $$ |    $$ | $$  ____/  $$ |  \\$$$$ /   $$$$$$$$| $$ |" << endl;
+cout << "			$$ __$$ | $$ | $$ | $$ |$$\\ $$ | $$ |       $$ |  $$  $$<   $$ ____|  $$ |" << endl;
+cout << "			\\$$$$$$$| $$ | $$ | \$$$$$$ |$$ | $$ |       $$ | $$ / \\$$\  \\$$$$$$$\\  $$ |" << endl;
+cout << "			 \\______| \\__| \\__| \\____ / \\__| \\__|      \\__| \\__/ \\__ |  \\_______| \\__|" << endl;
+
+
+
+
+cout << endl;
+
+
 	cout << "Welcome to the BMP to ASM compiler." << endl;
 	cout << "Enter:\n1 for TXT to ASM code conversion.\n2 for direct BMP to ASM conversion (colored EXPERIMENTAL),\n3 for direct BMP to ASM conversion (ONE-TO-ONE MonoChrome),\n5 for Advanced Configuration,\n0 to exit." << endl;
 	int option;
@@ -29,33 +44,8 @@ int main()
 		cout << "Name of saved ASM (do not enter the extension): ";
 		getline(cin, saveTo);
 		Config UserConfig;
-		try {
-			UserConfig = loadUserConfig();
-		}
-		catch (out_of_range& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
-		catch (invalid_argument& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
+		loadSettings(UserConfig);
+
 		try {
 			readTXTDrawingAndOutput(filename, saveTo, Rows, Columns, UserConfig);
 			cout << "Max Rows = " << Rows << endl;
@@ -92,33 +82,7 @@ int main()
 
 
 		Config UserConfig;
-		try {
-			UserConfig = loadUserConfig();
-		}
-		catch (out_of_range& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
-		catch (invalid_argument& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
+		loadSettings(UserConfig);
 
 
 		try {
@@ -149,34 +113,7 @@ int main()
 		cout << "Name of saved ASM (do not enter the extension): ";
 		getline(cin, saveTo);
 		Config UserConfig;
-		try {
-			UserConfig = loadUserConfig();
-		}
-		catch (out_of_range& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
-		catch (invalid_argument& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
-
+		loadSettings(UserConfig);
 
 		try {
 
@@ -197,33 +134,7 @@ int main()
 
 		cout << " ============= ADVANCED SETTINGS ============ " << endl;
 		Config UserConfig;
-		try {
-			UserConfig = loadUserConfig();
-		}
-		catch (out_of_range& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
-		catch (invalid_argument& e) {
-			cout << "Oops, we hit a snag! " << e.what() << endl;
-			cout << "Do you wish to restore default settings? (Y / N)" << endl;
-			char option;
-			cin >> option;
-			if (option == 'y' or option == 'Y') {
-				cout << "Restoring default settings..." << endl;
-				writeUserConfig(UserConfig);
-			}
-			else
-				exitProgram();
-		}
+		loadSettings(UserConfig);
 
 		cout << "Your current settings are:" << endl;
 		cout << "1. Scan Method: " << UserConfig.SCANMETHOD << " (";

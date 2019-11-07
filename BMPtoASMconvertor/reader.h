@@ -1,6 +1,5 @@
 #pragma once
 #include <fstream>
-#include <iostream>
 #include <string>
 #include <array>
 #include <vector>
@@ -41,14 +40,12 @@ std::vector<char> readBMP(const std::string& file, int &Rows, int &Columns)
 	//cout << "Img data is " << img.data() << endl;
 	cout << "Img size is " << img.size() << endl;
 	bmp.read(img.data(), img.size());
-	cout << "Bitwise negation of 3... " << (~3) << endl;
 	auto row_padded = ((width * 3 + 3) & (~3));
 	auto dataSize = width * height * 3;
 	cout << "(width * 3 + 3) = " << (width * 3 + 3) << endl;
 	cout << "((width * 3 + 3) & (~3)) = " << ((width * 3 + 3) & (~3)) << endl;
 	cout << "DataSize is "<<dataSize << endl;
 	img.resize(dataSize);
-	//bmp.read(img.data(), img.size());
 
 	char tmp = 0;
 
@@ -65,20 +62,14 @@ std::vector<char> readBMP(const std::string& file, int &Rows, int &Columns)
 			img[j + 2] = tmp;
 
 			cout << "R: " << (int)img[j] << " G: " << (int)img[j + 1] << " B: " << (int)img[j + 2] << endl;
-		/*
-			result[k] = img[j];
-			k++;*/
+	
+			// Save pixel data of img row into a row of result
 			result[k] = img[j];
 			result[k+1] = img[j+1];
 			result[k + 2] = img[j + 2];
 			k += 3;
 		}
 
-		//for (int j = 0; j < width * 3; j ++)
-		//{
-		//	result[k] = img[j];
-		//	k++;
-		//}
 	}
 
 	//Display img to check 
