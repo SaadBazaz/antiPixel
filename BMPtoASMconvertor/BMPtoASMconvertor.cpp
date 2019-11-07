@@ -180,7 +180,7 @@ int main()
 
 		try {
 
-			oneToOneConversion(filename, saveTo, myImage, Rows, Columns);
+			oneToOneConversion(filename, saveTo, myImage, Rows, Columns, UserConfig);
 			cout << "Max Rows = " << Rows << endl;
 			cout << "Max Columns = " << Columns << endl;
 
@@ -308,6 +308,7 @@ int main()
 
 	}
 	}
+	exitProgram();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -219,7 +219,7 @@ void RGBConversion(string& readFrom, string filename, vector <char>& img, int &R
 
 
 
-void oneToOneConversion(string &readFrom, string filename, vector <char> &img, int &Rows, int &Columns) {
+void oneToOneConversion(string &readFrom, string filename, vector <char> &img, int &Rows, int &Columns, Config &UserConfig) {
 
 	img = readBMP(readFrom, Rows, Columns);
 
@@ -231,22 +231,34 @@ void oneToOneConversion(string &readFrom, string filename, vector <char> &img, i
 	int getRows = 0;
 	for (int i = 0; i < img.size(); i++) {
 
-		if (i % 3 == 0) {
+		if (i % 3 == 0 and i!=0) {
 			int machine;
 			machine = (int)img[i] + 1;
 			content += to_string(machine);
 			content += ", ";
-			if (i % ((Columns/5)*3) == 0 and i!=0) {
-				content += "\n				";
+			if (UserConfig.SCANMETHOD == 0){
+				if (i % ((Columns / 5) * 3) == 0 and i != 0) {
+					content += "\n				";
+				}
 			}
+			
 		}
 		if (i % ((Columns-1)*3) == 0 and i!=0) {
-			content.erase(content.end() - 2);
 
-			
-			ofs << "myimagearray" << to_string(getRows) << " db ";
+			content.erase(content.end() - 2);
+			if (UserConfig.SCANMETHOD == 0) {
+				ofs << "myimagearray" << to_string(getRows);
+				ofs << " db ";
+		}
+		else if (UserConfig.SCANMETHOD == 1) {
+				if (getRows == 0) {
+					ofs << "myimagearray" << to_string(getRows)<<"       ";
+				}
+				else
+					ofs << "\t\t\t\t\t";
+				ofs << " db ";
+			}
 			ofs << content;
-			ofs << endl;
 			ofs << endl;
 
 			getRows++;
