@@ -33,6 +33,12 @@ HOW TO USE METHOD 3:
 
 TROUBLESHOOTING:
 - if you can't find the User_Results folder, make it yourself or download the latest build
+  STRUCTURE
+  User_Results
+     BMPColorASM
+     BMPMonoASM
+     TextToASM
+  
 - Sometimes the arrays may be terminated by an extra comma so remove that before running the arrays.
 - Further, the program has NOT been tested on images larger than 25x25 PIXELS. Avoid using bigger pictures.
 - The program has not been tested with images generated from different programs, like GIMP or Photoshop. In those cases, 
