@@ -5,6 +5,10 @@ Author: Saad Bazaz
 Basic image reading and manipulation in C++, in Visual Studio 2019. Converts 24-bit BMP and properly 
 formatted txt files into MASM code.
 
+Note:
+Currently works on white background and black object (see the cactus_example if you need help drawing)
+
+
 HOW TO USE METHOD 1:
 1. Create a pixel drawing in mspaint on 25x25 canvas
 2. Save As => BMP Picture => (24-bit Bitmap)
