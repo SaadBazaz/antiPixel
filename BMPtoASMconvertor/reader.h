@@ -68,13 +68,17 @@ std::vector<char> readBMP(const std::string& file, int &Rows, int &Columns)
 		/*
 			result[k] = img[j];
 			k++;*/
+			result[k] = img[j];
+			result[k+1] = img[j+1];
+			result[k + 2] = img[j + 2];
+			k += 3;
 		}
 
-		for (int j = 0; j < width * 3; j ++)
-		{
-			result[k] = img[j];
-			k++;
-		}
+		//for (int j = 0; j < width * 3; j ++)
+		//{
+		//	result[k] = img[j];
+		//	k++;
+		//}
 	}
 
 	//Display img to check 
@@ -227,8 +231,11 @@ void oneToOneConversion(string &readFrom, string filename, vector <char> &img, i
 
 	ofstream ofs("User_Results\\BMPMonoASM\\" + filename + ".asm"	);
 
+
 	string content = "";
 	int getRows = 0;
+	int getColumns = 0;
+
 	for (int i = 0; i < img.size(); i++) {
 
 		if (i % 3 == 0 and i!=0) {
@@ -241,8 +248,20 @@ void oneToOneConversion(string &readFrom, string filename, vector <char> &img, i
 					content += "\n				";
 				}
 			}
+			getColumns++;
 			
 		}
+
+		//due to limit of MASM 8086, an array can't be declared with more than 40 elements
+		if (getColumns % (39) == 0 and getColumns!=0) {
+		
+			if (UserConfig.SCANMETHOD==1)
+				content.erase(content.end() - 2);
+
+			content += "\n\t\t\t\t db ";
+			getColumns = 0;
+		}
+
 		if (i % ((Columns-1)*3) == 0 and i!=0) {
 
 			content.erase(content.end() - 2);
@@ -262,6 +281,7 @@ void oneToOneConversion(string &readFrom, string filename, vector <char> &img, i
 			ofs << endl;
 
 			getRows++;
+			getColumns = 0;
 			content = "";
 		}
 
