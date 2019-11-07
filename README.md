@@ -9,6 +9,8 @@ Note:
 Currently works on white background and black object (see the cactus_example if you need help drawing)
 
 
+<<<<<    USE cactus_example.bmp OR cactus_example.txt AS DEMO RUNS     >>>>>
+
 HOW TO USE METHOD 1:
 1. Create a pixel drawing in mspaint on 25x25 canvas
 2. Save As => BMP Picture => (24-bit Bitmap)
