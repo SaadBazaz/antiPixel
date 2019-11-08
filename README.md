@@ -32,6 +32,8 @@ HOW TO USE METHOD 3:
 4. Compile the program and feed it the bmp file
 
 
+![Alt text](Color Assignments.PNG?raw=true "Color Assignments")
+
 
 TROUBLESHOOTING:
 - if you can't find the User_Results folder, make it yourself or download the latest build
