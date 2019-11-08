@@ -110,7 +110,10 @@ void readTXTDrawingAndOutput(string filename, string saveHere, int& Rows, int& C
 	ofs << ".data" << endl;
 	ofs << endl;
 	ofs << "; ============================================================" << endl;
-	ofs << "; each array represents one row of the image" << endl;
+	if (UserConfig.SCANMETHOD == 0)
+		ofs << "; each array represents one row of the image" << endl;
+	if (UserConfig.SCANMETHOD == 1)
+		ofs << "; each line contains a row of pixels" << endl;
 
 	int machine;
 	int i = 0;
@@ -121,12 +124,35 @@ void readTXTDrawingAndOutput(string filename, string saveHere, int& Rows, int& C
 	while (!ifs.eof()) {
 		c = ifs.get();
 		cout << c;
+
+
+		//FortyFix for older assemblers
+		if (maxCol % (39) == 0 and maxCol != 0) {
+
+			if (UserConfig.SCANMETHOD == 1)
+				content.erase(content.end() - 2);
+
+			content += "\n\t\t\t\t db ";
+			maxCol = 0;
+		}
+
+
 		if (c == '\n') {
 			if (maxCol > Columns)
 				Columns = maxCol;
 			if (content != "" && j % UserConfig.ROWSKIP == 1) {
 				content.erase(content.end() - 2);
-				ofs << "myimagearray" << to_string(Rows) << " db ";
+				if (UserConfig.SCANMETHOD == 0) {
+					ofs << "myimagearray" << to_string(Rows) << " db ";
+				}
+				else if (UserConfig.SCANMETHOD == 1) {
+					if (Rows == 0) {
+						ofs << "myimagearray" << to_string(Rows) << "       ";
+					}
+					else
+						ofs << "\t\t\t\t\t";
+					ofs << " db ";
+				}
 				ofs << content;
 				ofs << endl;
 				ofs << endl;
@@ -147,8 +173,10 @@ void readTXTDrawingAndOutput(string filename, string saveHere, int& Rows, int& C
 			}
 			content += to_string(machine);
 			content += ", ";
-			if (i % 24 == 0) {
-				content += "\n				";
+			if (UserConfig.SCANMETHOD == 0) {
+				if (i % 24 == 0) {
+					content += "\n				";
+				}
 			}
 		}
 		i++;
