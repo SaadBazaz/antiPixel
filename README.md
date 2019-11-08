@@ -32,7 +32,7 @@ HOW TO USE METHOD 3:
 4. Compile the program and feed it the bmp file
 
 
-![Colors](Color Assignments.PNG)
+![Colors](ColorAssignments.PNG)
 
 
 TROUBLESHOOTING:
