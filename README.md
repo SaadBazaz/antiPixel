@@ -14,14 +14,18 @@ Currently works on white background and black object (see the cactus_example if 
 HOW TO USE METHOD 1:
 1. Create a pixel drawing in mspaint on 25x25 canvas
 2. Save As => BMP Picture => (24-bit Bitmap)
-3. Go to https://www.text-image.com/convert/pic2ascii.cgi, convert the BMP to text
+3. Go to https://www.text-image.com/convert/ascii.html, convert the BMP to text
 4. Save the text in a txt file, place it in the program's solution folder
 5. Compile the program and feed it the text file
 
 
 
-HOW TO USE METHOD 2:
-1. Don't.
+HOW TO USE METHOD 2 (my current method):
+1. Create a pixel drawing in mspaint on 25x25 canvas
+2. Save As => BMP Picture => (16 color Bitmap)          !!!!! IMPORTANT !!!!!
+3. Now, Save As => BMP Picture => (24-bit Bitmap)       !!!!! These steps were necessary to convert all extra colors into 16 color !!!!!
+3. NOW you can place the image in the program's solution folder
+4. Compile the program and feed it the bmp file
 
 
 
@@ -47,6 +51,6 @@ User_Results =>
 -     TextToASM
   
 - Sometimes the arrays may be terminated by an extra comma so remove that before running the arrays.
-- Further, the program has NOT been tested on images larger than 25x25 PIXELS. Avoid using bigger pictures.
+- Further, the program has NOT been tested on images larger than 25x25 PIXELS. You can use other sizes, but avoid using bigger pictures.
 - The program has not been tested with images generated from different programs, like GIMP or Photoshop. In those cases, 
 you would have to look up the HEADER SIZE and change it in the Advanced Configurations
