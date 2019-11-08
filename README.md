@@ -32,6 +32,9 @@ HOW TO USE METHOD 3:
 4. Compile the program and feed it the bmp file
 
 
+
+You can change the color number assignments according to your desire. Just head over to Color.h and change the preprocessor definitions.
+👇
 ![Colors](ColorAssignments.PNG)
 
 
