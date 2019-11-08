@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMPtoASMconvertor.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="ConfigHandler.h" />
     <ClInclude Include="reader.h" />

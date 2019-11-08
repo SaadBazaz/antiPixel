@@ -26,7 +26,6 @@ public:
 	}
 
 	//enables copying of loaded Config to current Config and vice versa
-
 	Config(const Config &toCopy) {
 		if ((toCopy.SCANMETHOD < 0 or toCopy.SCANMETHOD>3) or toCopy.ROWSKIP <= 0 or toCopy.COLSKIP <= 0) {
 			throw out_of_range ("A value during the copy is out of range!");

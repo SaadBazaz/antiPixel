@@ -86,7 +86,7 @@ cout << endl;
 
 
 		try {
-			RGBConversion(filename, saveTo, myImage, Rows, Columns);
+			RGBConversion(filename, saveTo, myImage, Rows, Columns, UserConfig);
 			cout << "Max Rows = " << Rows << endl;
 			cout << "Max Columns = " << Columns << endl;
 

@@ -5,9 +5,10 @@
 #include <vector>
 #include <iterator>
 #include "Config.h"
+#include "Color.h"
 using namespace std;
 
-std::vector<char> readBMP(const std::string& file, int &Rows, int &Columns)
+std::vector<char> readBMP(const std::string& file, int& Rows, int& Columns)
 {
 	static constexpr size_t HEADER_SIZE = 54;
 
@@ -33,10 +34,12 @@ std::vector<char> readBMP(const std::string& file, int &Rows, int &Columns)
 	std::cout << "height: " << height << std::endl;
 	std::cout << "depth: " << depth << "-bit" << std::endl;
 
+
+
 	Rows = height;
 	Columns = width;
 
-	std::vector<char> img(HEADER_SIZE - dataOffset);
+	std::vector<char> img(0);
 	//cout << "Img data is " << img.data() << endl;
 	cout << "Img size is " << img.size() << endl;
 	bmp.read(img.data(), img.size());
@@ -48,29 +51,37 @@ std::vector<char> readBMP(const std::string& file, int &Rows, int &Columns)
 	img.resize(dataSize);
 
 	char tmp = 0;
-
 	vector<char>result(dataSize);
-	int k = 0;
-	for (int i = 0; i < height; i++)
-	{
-		bmp.read(img.data(), row_padded);
-		for (int j = 0; j < width * 3; j += 3)
-		{
-			// Convert (B, G, R) to (R, G, B)
-			tmp = img[j];
-			img[j] = img[j + 2];
-			img[j + 2] = tmp;
 
-			cout << "R: " << (int)img[j] << " G: " << (int)img[j + 1] << " B: " << (int)img[j + 2] << endl;
-	
-			// Save pixel data of img row into a row of result
-			result[k] = img[j];
-			result[k+1] = img[j+1];
-			result[k + 2] = img[j + 2];
-			k += 3;
+	if (depth == 24) {
+		cout << "Detected a 24-bit BMP file." << endl;
+		int k = 0;
+		for (int i = 0; i < height; i++)
+		{
+			bmp.read(img.data(), row_padded);
+			for (int j = 0; j < width * 3; j += 3)
+			{
+				// Convert (B, G, R) to (R, G, B)
+				tmp = img[j];
+				img[j] = img[j + 2];
+				img[j + 2] = tmp;
+
+				cout << "R: " << (unsigned char)img[j] << " G: " << (unsigned char)img[j + 1] << " B: " << (unsigned char)img[j + 2] << endl;
+
+				// Save pixel data of img row into a row of result
+				result[k] = img[j];
+				result[k + 1] = img[j + 1];
+				result[k + 2] = img[j + 2];
+				k += 3;
+			}
+
 		}
 
 	}
+	else if (depth == 4) {
+		throw invalid_argument("Cannot read 16-color (4-bit) BMP files as of yet. Save your image as 24-bit BMP in \nMSPaint, or try checking the latest build of antiPixel on GitHub.");
+	}
+
 
 	//Display img to check 
 	for (int i = 0; i < result.size(); i+=3) {
@@ -191,7 +202,7 @@ void readTXTDrawingAndOutput(string filename, string saveHere, int& Rows, int& C
 
 
 
-void RGBConversion(string& readFrom, string filename, vector <char>& img, int &Rows, int& Columns) {
+void RGBConversion(string& readFrom, string filename, vector <char>& img, int &Rows, int& Columns, Config &UserConfig) {
 
 	img = readBMP(readFrom, Rows, Columns);
 
@@ -199,34 +210,66 @@ void RGBConversion(string& readFrom, string filename, vector <char>& img, int &R
 
 	ofstream ofs("User_Results\\BMPColorASM\\" + filename + ".asm");
 
+
 	string content = "";
 	int getRows = 0;
+	int getColumns = 0;
+
 	for (int i = 0; i < img.size(); i++) {
 
 		if (i % 3 == 0) {
 			int machine;
-			machine = (int)img[i] + 1;
+			
+			CheckRGBValue(machine, (unsigned char)img[i], (unsigned char)img[i+1], (unsigned char)img[i+2]);
+			
 			content += to_string(machine);
 			content += ", ";
-			if (i % 18 == 0 and i != 0) {
-				content += "\n				";
+			if (UserConfig.SCANMETHOD == 0) {
+				if (i % ((Columns / 5) * 3) == 0 and i != 0) {
+					content += "\n				";
+				}
 			}
-		}
-		if (i % 72 == 0 and i != 0) {
-			//content.erase(content.end() - 2);
+			getColumns++;
 
-			ofs << "myimagearray" << to_string(getRows) << " db ";
+		}
+
+		//due to limit of MASM 8086, an array can't be declared with more than 40 elements
+		if (getColumns % (39) == 0 and getColumns != 0) {
+
+			if (UserConfig.SCANMETHOD == 1)
+				content.erase(content.end() - 2);
+
+			content += "\n\t\t\t\t db ";
+			getColumns = 0;
+		}
+
+		if (i % ((Columns - 1) * 3) == 0 and i != 0) {
+
+			content.erase(content.end() - 2);
+			if (UserConfig.SCANMETHOD == 0) {
+				ofs << "myimagearray" << to_string(getRows);
+				ofs << " db ";
+			}
+			else if (UserConfig.SCANMETHOD == 1) {
+				if (getRows == 0) {
+					ofs << "myimagearray" << to_string(getRows) << "       ";
+				}
+				else
+					ofs << "\t\t\t\t\t";
+				ofs << " db ";
+			}
 			ofs << content;
-			ofs << endl;
 			ofs << endl;
 
 			getRows++;
+			getColumns = 0;
 			content = "";
 		}
 
 	}
 	ofs.close();
 }
+
 
 
 
@@ -259,7 +302,12 @@ void oneToOneConversion(string &readFrom, string filename, vector <char> &img, i
 
 		if (i % 3 == 0 and i!=0) {
 			int machine;
-			machine = (int)img[i] + 1;
+			if ((int)img[i] == -1 and (int)img[i-1] == -1 and (int)img[i-2] == -1) {
+				machine = 0;
+			}
+			else
+				machine = 1;
+			//machine = (int)img[i] + 1;
 			content += to_string(machine);
 			content += ", ";
 			if (UserConfig.SCANMETHOD == 0){
