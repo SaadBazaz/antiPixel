@@ -5,11 +5,8 @@ Author: Saad Bazaz
 Basic image reading and manipulation in C++, in Visual Studio 2019. Converts 24-bit BMP and properly 
 formatted txt files into MASM code.
 
-Note:
-Currently works on white background and black object (see the cactus_example if you need help drawing)
 
-
-<<<<<    USE cactus_example.bmp OR cactus_example.txt AS DEMO RUNS     >>>>>
+<<<<<    USE cactus_example.txt OR 16color-palette OR cactus_example.bmp AS EXAMPLES     >>>>>
 
 HOW TO USE METHOD 1:
 1. Create a pixel drawing in mspaint on 25x25 canvas
@@ -51,6 +48,6 @@ User_Results =>
 -     TextToASM
   
 - Sometimes the arrays may be terminated by an extra comma so remove that before running the arrays.
-- Further, the program has NOT been tested on images larger than 25x25 PIXELS. You can use other sizes, but avoid using bigger pictures.
+- avoid using pictures bigger than 500x500 pixels. It won't crash in any situation, but it would be slow to render and you'd probably get worried.
 - The program has not been tested with images generated from different programs, like GIMP or Photoshop. In those cases, 
 you would have to look up the HEADER SIZE and change it in the Advanced Configurations
