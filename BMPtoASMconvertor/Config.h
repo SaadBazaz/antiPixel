@@ -10,7 +10,7 @@ public:
 
 
 	//default values in case the user wants to restore
-	Config() : SCANMETHOD(0), ROWSKIP(2), COLSKIP(4), HEADERSIZE(54) {
+	Config() : SCANMETHOD(1), ROWSKIP(2), COLSKIP(4), HEADERSIZE(54) {
 
 	}
 

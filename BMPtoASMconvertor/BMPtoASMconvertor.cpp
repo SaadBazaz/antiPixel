@@ -26,7 +26,7 @@ cout << endl;
 
 
 	cout << "Welcome to the BMP to ASM compiler." << endl;
-	cout << "Enter:\n1 for TXT to ASM code conversion.\n2 for direct BMP to ASM conversion (colored EXPERIMENTAL),\n3 for direct BMP to ASM conversion (ONE-TO-ONE MonoChrome),\n5 for Advanced Configuration,\n0 to exit." << endl;
+	cout << "Enter:\n1 for TXT to ASM code conversion.\n2 for .BMP Image to .ASM conversion (16 color),\n3 for .BMP Image to .ASM conversion (Black-and-White),\n5 for Advanced Configuration,\n0 to exit." << endl;
 	int option;
 	cin >> option;
 
@@ -37,11 +37,15 @@ cout << endl;
 		string saveTo;
 		int Rows = 0;
 		int Columns = 0;
-		cout << "Enter the txt file from which you want to read (do not enter the extension): ";
+		cout << endl;
+		cout << endl;
+		cout << "================= Text File to ASM File conversion ================="<<endl;
+
+		cout << "Enter the .txt file to load (do not enter the extension): ";
 		cin.ignore();
 		getline(cin, filename);
 
-		cout << "Name of saved ASM (do not enter the extension): ";
+		cout << "Save as (do not enter the extension): ";
 		getline(cin, saveTo);
 		Config UserConfig;
 		loadSettings(UserConfig);
@@ -65,19 +69,21 @@ cout << endl;
 	{
 		string filename;
 		string saveTo;
+		
+		cout << endl;
+		cout << endl;
+		cout << "================= BMP Image to ASM File conversion =================" << endl;
 
-		cout << "WARNING: This method is incomplete, highly unstable and not thoroughly tested." << endl;
-		cout << "Try method 3 instead." << endl;
 
 		int Rows = 0;
 		int Columns = 0;
 		vector <char> myImage;
 
-		cout << "Enter the .BMP file from which you want to read (do not enter the extension): ";
+		cout << "Enter the .BMP file to load (do not enter the extension): ";
 		cin.ignore();
 		getline(cin, filename);
 
-		cout << "Name of saved ASM (do not enter the extension): ";
+		cout << "Save as (do not enter the extension): ";
 		getline(cin, saveTo);
 
 
@@ -103,14 +109,20 @@ cout << endl;
 	{
 		string filename;
 		string saveTo;
+
+		cout << endl;
+		cout << endl;
+		cout << "================= BMP Image to ASM File conversion (B/W) =================" << endl;
+
+
 		int Rows = 0;
 		int Columns = 0;
 		vector <char> myImage;
-		cout << "Enter the .BMP file from which you want to read (do not enter the extension): ";
+		cout << "Enter the .BMP file to load (do not enter the extension): ";
 		cin.ignore();
 		getline(cin, filename);
 
-		cout << "Name of saved ASM (do not enter the extension): ";
+		cout << "Save as (do not enter the extension): ";
 		getline(cin, saveTo);
 		Config UserConfig;
 		loadSettings(UserConfig);

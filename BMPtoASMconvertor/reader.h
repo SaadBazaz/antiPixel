@@ -43,6 +43,7 @@ std::vector<char> readBMP(const std::string& file, int& Rows, int& Columns)
 	//cout << "Img data is " << img.data() << endl;
 	cout << "Img size is " << img.size() << endl;
 	bmp.read(img.data(), img.size());
+	
 	auto row_padded = ((width * 3 + 3) & (~3));
 	auto dataSize = width * height * 3;
 	cout << "(width * 3 + 3) = " << (width * 3 + 3) << endl;
@@ -50,6 +51,9 @@ std::vector<char> readBMP(const std::string& file, int& Rows, int& Columns)
 	cout << "DataSize is "<<dataSize << endl;
 	img.resize(dataSize);
 
+	//if (depth == 4) {
+	//	row_padded = width * 3;
+	//}
 	char tmp = 0;
 	vector<char>result(dataSize);
 
@@ -79,7 +83,11 @@ std::vector<char> readBMP(const std::string& file, int& Rows, int& Columns)
 
 	}
 	else if (depth == 4) {
+		//toDo: implement 4 bit depth logic
 		throw invalid_argument("Cannot read 16-color (4-bit) BMP files as of yet. Save your image as 24-bit BMP in \nMSPaint, or try checking the latest build of antiPixel on GitHub.");
+	}
+	else if (depth == 8) {
+		throw invalid_argument("Cannot read 256 color BMP files. Please use 16colors.");
 	}
 
 
@@ -201,7 +209,6 @@ void readTXTDrawingAndOutput(string filename, string saveHere, int& Rows, int& C
 
 
 
-
 void RGBConversion(string& readFrom, string filename, vector <char>& img, int &Rows, int& Columns, Config &UserConfig) {
 
 	img = readBMP(readFrom, Rows, Columns);
@@ -236,7 +243,7 @@ void RGBConversion(string& readFrom, string filename, vector <char>& img, int &R
 		//due to limit of MASM 8086, an array can't be declared with more than 40 elements
 		if (getColumns % (39) == 0 and getColumns != 0) {
 
-			if (UserConfig.SCANMETHOD == 1)
+			/*if (UserConfig.SCANMETHOD == 1)*/
 				content.erase(content.end() - 2);
 
 			content += "\n\t\t\t\t db ";
@@ -269,16 +276,6 @@ void RGBConversion(string& readFrom, string filename, vector <char>& img, int &R
 	}
 	ofs.close();
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

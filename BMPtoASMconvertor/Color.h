@@ -1,19 +1,19 @@
 #pragma once
 
-//Colors Constants (16-bit)
+//Color Constants (16-bit)
 #define Black 0
-#define Blue 1
+#define Red 1
 #define Green 2
-#define Cyan 3
-#define Red 4
+#define LightRed 3
+#define Brown 4
 #define Magenta 5
-#define Brown 6
+#define Cyan 6
 #define LightGray 7
 #define DarkGray 8
-#define LightBlue 9
+#define Blue 9
 #define LightGreen 10
 #define LightCyan 11
-#define LightRed 12
+#define LightBlue 12
 #define LightMagenta 13
 #define Yellow 14
 #define White 15
@@ -44,6 +44,9 @@ void CheckRGBValue(int& machine, int R, int G, int B) {
 	}
 	else if (R == 192 and G == 192 and B == 192) {
 		machine = LightGray;
+	}
+	else if (R == 0 and G == 255 and B == 0) {
+		machine = LightGreen;
 	}
 	else if (R == 128 and G == 128 and B == 128) {
 		machine = DarkGray;
