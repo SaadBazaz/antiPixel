@@ -51,3 +51,7 @@ User_Results =>
 - avoid using pictures bigger than 500x500 pixels. It won't crash in any situation, but it would be slow to render and you'd probably get worried.
 - The program has not been tested with images generated from different programs, like GIMP or Photoshop. In those cases, 
 you would have to look up the HEADER SIZE and change it in the Advanced Configurations
+
+SUPPORT:
+You can email me at saadbazaz@hotmail.com
+I'd love to entertain any questions and suggestions!
