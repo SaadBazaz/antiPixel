@@ -49,5 +49,6 @@ User_Results =>
 you would have to look up the HEADER SIZE and change it in the Advanced Configurations
 
 ## Support
-You can email me at saadbazaz@hotmail.com
+Make pull requests, create Issues, and do everything you want to get information out of me.
+You can personally email me at saadbazaz@hotmail.com
 I'd love to entertain any questions and suggestions!
