@@ -2,10 +2,10 @@
 👾 Convert BMPs and text files to proper x8086 assembly arrays.
 
 ## About
-Basic image reading and manipulation in C++, in Visual Studio 2019. Converts 24-bit BMP and properly 
-formatted txt files into MASM code.
-Author: Saad Bazaz.
-<<<<<    USE cactus_example.txt OR 16color-palette OR cactus_example.bmp AS EXAMPLES     >>>>>
+Converts pictures and text files into MASM code arrays.
+Basic image reading and manipulation in C++, in Visual Studio 2019. 
+*Author: Saad Bazaz.*
+> Use **cactus_example.txt**, **16color-palette** or **cactus_example.bmp** as examples
 
 ## Instructions
 ### HOW TO USE METHOD 1:
