@@ -1,11 +1,10 @@
 # antiPixel
 👾 Convert BMPs and text files to proper x8086 assembly arrays.
-## Author
-Saad Bazaz
 
 ## About
 Basic image reading and manipulation in C++, in Visual Studio 2019. Converts 24-bit BMP and properly 
 formatted txt files into MASM code.
+Author: Saad Bazaz.
 <<<<<    USE cactus_example.txt OR 16color-palette OR cactus_example.bmp AS EXAMPLES     >>>>>
 
 ## Instructions
@@ -36,7 +35,7 @@ You can change the color number assignments according to your desire. Just head 
 ![Colors](ColorAssignments.PNG)
 
 
-## TROUBLESHOOTING
+## Troubleshooting
 - if you can't find the User_Results folder, make it yourself or download the latest build
 a) STRUCTURE
 User_Results =>
@@ -49,6 +48,6 @@ User_Results =>
 - The program has not been tested with images generated from different programs, like GIMP or Photoshop. In those cases, 
 you would have to look up the HEADER SIZE and change it in the Advanced Configurations
 
-## SUPPORT
+## Support
 You can email me at saadbazaz@hotmail.com
 I'd love to entertain any questions and suggestions!
