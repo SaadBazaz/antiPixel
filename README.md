@@ -1,5 +1,5 @@
 # antiPixel [![Build Status](https://travis-ci.org/SaadBazaz/antiPixel.svg?branch=master)](https://travis-ci.org/SaadBazaz/antiPixel) 
-![](https://github.com/SaadBazaz/antiPixel/workflows/ccpp.yml/badge.svg)
+![](https://github.com/SaadBazaz/antiPixel/workflows/ccpp.yml/badge.svg)(https://github.com/SaadBazaz/antiPixel/actions)
 
 👾 Convert BMPs and text files to proper x8086 assembly arrays.
 
