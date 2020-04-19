@@ -1,8 +1,0 @@
-﻿  BMPtoASMconvertor.cpp
-C:\Users\care\source\repos\BMPtoASMconvertor\BMPtoASMconvertor\reader.h(57,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\care\source\repos\BMPtoASMconvertor\BMPtoASMconvertor\reader.h(60,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\care\source\repos\BMPtoASMconvertor\BMPtoASMconvertor\reader.h(73,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\care\source\repos\BMPtoASMconvertor\BMPtoASMconvertor\reader.h(81,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\care\source\repos\BMPtoASMconvertor\BMPtoASMconvertor\reader.h(181,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\care\source\repos\BMPtoASMconvertor\BMPtoASMconvertor\reader.h(232,20): warning C4018:  '<': signed/unsigned mismatch
-  BMPtoASMconvertor.vcxproj -> C:\Users\care\source\repos\BMPtoASMconvertor\Debug\BMPtoASMconvertor.exe
