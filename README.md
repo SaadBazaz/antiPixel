@@ -8,6 +8,9 @@ Basic image reading and manipulation in C++, in Visual Studio 2019.
 *Author: Saad Bazaz.*
 > Use **cactus_example.txt**, **16color-palette** or **cactus_example.bmp** as examples
 
+## How to make pixel games in MASM?
+Follow this guy's awesome tutorial (https://www.youtube.com/watch?v=dyANHsj2UOw&list=PLvpbDCl_H7mfgmEJPl1bTHlH5g-f0kWDM)!
+
 ## Instructions
 ### HOW TO USE METHOD 1:
 1. Create a pixel drawing in mspaint on 25x25 canvas
